@@ -1,0 +1,19 @@
+{
+  "prs": {
+    "56": {
+      "headSha": "f26a82c57c2daa5c2cefedd09494365d1f88fd57",
+      "mainSha": "e1aaf94cc259d60feffe6a4a0a9040046fae6844",
+      "branch": "itay/claude-md-ship-cutscene",
+      "title": "CLAUDE.md: describe the ship cutscene and the SEA LANTERN",
+      "pushedAt": "2026-10-30T19:56:25.159Z",
+      "status": "ok",
+      "builtAt": "2026-10-30T19:56:25.159Z"
+    }
+  },
+  "general": {
+    "key": "pr56:f26a82c57c2daa5c2cefedd09494365d1f88fd57:e1aaf94cc259d60feffe6a4a0a9040046fae6844",
+    "pr": 56,
+    "label": "PR #56 itay/claude-md-ship-cutscene",
+    "at": "2026-10-30T19:56:25.159Z"
+  }
+}

@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#141c12" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <title>Zombie Survivor</title>
+    <script type="module" crossorigin src="./assets/index-j9mNMwQN.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-2ieLwN-K.css">
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game"></canvas>
+      <div id="touch-layer"></div>
+      <div id="joy-base"><div id="joy-knob"></div></div>
+      <div id="numbers"></div>
+      <div id="vignette"></div>
+
+      <div id="hud" class="hidden">
+        <div class="hud-top">
+          <div id="xp-bar" class="bar"><div id="xp-fill" class="fill"></div><span id="xp-level">LV 1</span></div>
+          <div class="hud-row">
+            <div id="hp-bar" class="bar"><div id="hp-fill" class="fill"></div><span id="hp-text">100 / 100</span></div>
+            <div class="pill" id="stage-label">STAGE 1</div>
+            <div class="pill" id="remaining-label">🧟 100</div>
+            <div class="pill" id="loot-label">🎁 0</div>
+            <button id="pause-btn" aria-label="Pause">❚❚</button>
+          </div>
+          <div id="boss-bar" class="bar hidden"><div id="boss-fill" class="fill"></div><span>BOSS</span></div>
+        </div>
+        <div id="banner" class="hidden"><div id="banner-title">STAGE 1</div><div id="banner-sub"></div></div>
+        <div id="loot-toast" class="hidden"></div>
+      </div>
+
+      <!-- ============================== title (shown once when the game opens, before home) -->
+      <div id="screen-title" class="title-screen hidden">
+        <h1 class="logo title-logo">ZOMBIE <span>SURVIVOR</span></h1>
+        <button class="btn primary title-play" id="btn-title-play">PLAY</button>
+      </div>
+
+      <!-- ============================== home -->
+      <div id="screen-home" class="screen menu-screen hidden">
+        <div class="menu-wrap home-wrap">
+          <div class="home-top">
+            <div class="currency-bar">
+              <div class="pill big-pill cur-pill" title="Coins: spend them on talents">🪙 <b class="coin-val">0</b></div>
+              <div class="pill big-pill cur-pill" title="Scrap: upgrade and merge items">🔩 <b class="scrap-val">0</b></div>
+              <div class="pill big-pill cur-pill diamond-pill" title="Diamonds: buy chests in the Shop">💎 <b class="diamond-val">0</b></div>
+            </div>
+            <button id="btn-settings-home" class="icon-btn" aria-label="Settings">⚙️</button>
+          </div>
+          <div class="logo mini home-logo">ZOMBIE <span>SURVIVOR</span></div>
+          <div class="home-main">
+            <div class="char-view" id="home-char"></div>
+          </div>
+          <div class="home-bottom">
+            <div id="house-list" class="house-list" aria-label="Choose a house"></div>
+            <button class="btn primary play-btn" id="btn-play">PLAY</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================== character -->
+      <div id="screen-character" class="screen menu-screen hidden">
+        <div class="menu-wrap">
+          <div class="menu-head">
+            <button class="icon-btn" data-to="equipment" aria-label="Back to equipment">←</button>
+            <h2>CHARACTER</h2>
+            <span class="head-spacer"></span>
+          </div>
+          <div class="char-view tall" id="character-char"></div>
+          <div class="panel opts" id="char-opts"></div>
+          <button class="btn primary" data-to="equipment">DONE</button>
+        </div>
+      </div>
+
+      <!-- ============================== equipment -->
+      <div id="screen-equipment" class="screen menu-screen hidden">
+        <div class="menu-wrap">
+          <div class="menu-head">
+            <button class="icon-btn" data-to="character" aria-label="Character look">🎨</button>
+            <h2>EQUIPMENT</h2>
+            <div class="pill big-pill" title="Scrap">🔩 <b class="scrap-val">0</b></div>
+          </div>
+          <div class="equip-top">
+            <div class="slot-col" id="slots-left"></div>
+            <div class="char-view" id="equipment-char"></div>
+            <div class="slot-col" id="slots-right"></div>
+          </div>
+          <div class="stat-bar" id="equip-stats"></div>
+          <div class="inv-head">
+            <span>Inventory · <b id="inv-count">0</b></span>
+            <button class="btn small merge-btn" id="btn-merge">🔀 Merge<i class="dot hidden" id="dot-merge"></i></button>
+            <div class="filter" id="inv-filter"></div>
+          </div>
+          <div class="inv-grid" id="inv-grid"></div>
+        </div>
+      </div>
+
+      <!-- ============================== merge -->
+      <div id="screen-merge" class="screen menu-screen solid hidden">
+        <div class="menu-wrap">
+          <div class="menu-head">
+            <button class="icon-btn" id="btn-merge-back" aria-label="Back to equipment">←</button>
+            <h2>MERGE</h2>
+            <div class="pill big-pill" title="Scrap">🔩 <b class="scrap-val">0</b></div>
+          </div>
+          <div class="merge-panel">
+            <div class="merge-row">
+              <div class="merge-slots" id="merge-slots"></div>
+              <span class="merge-arrow">➜</span>
+              <div class="merge-result" id="merge-result"></div>
+            </div>
+            <div class="merge-info" id="merge-info"></div>
+            <div class="merge-actions">
+              <button class="btn" id="btn-merge-auto">AUTO-FILL</button>
+              <button class="btn primary merge-go" id="btn-merge-go" disabled>MERGE</button>
+            </div>
+          </div>
+          <div class="inv-head"><span>Tap an item to place it · tap a slot to take it out</span></div>
+          <div class="inv-grid" id="merge-grid"></div>
+        </div>
+      </div>
+
+      <!-- ============================== talents -->
+      <div id="screen-talents" class="screen menu-screen solid hidden">
+        <div class="menu-wrap">
+          <div class="menu-head">
+            <span class="head-spacer"></span>
+            <h2>TALENTS</h2>
+            <div class="pill big-pill" title="Coins">🪙 <b class="coin-val">0</b></div>
+          </div>
+          <p class="note talents-note">Permanent upgrades for every run. Earn coins by killing zombies, clearing stages and beating bosses.</p>
+          <div class="branch-tabs" id="talent-tabs" role="tablist"></div>
+          <div class="talent-list" id="talent-list"></div>
+          <button class="btn small ghost reset-btn" id="btn-reset-talents">Reset talents</button>
+        </div>
+      </div>
+
+      <!-- ============================== missions -->
+      <div id="screen-missions" class="screen menu-screen solid hidden">
+        <div class="menu-wrap">
+          <div class="menu-head">
+            <span class="head-spacer"></span>
+            <h2>MISSIONS</h2>
+            <div class="pill big-pill diamond-pill" title="Diamonds">💎 <b class="diamond-val">0</b></div>
+          </div>
+          <div class="mission-head"><span>Daily</span><em id="missions-daily-reset"></em></div>
+          <div class="mission-list" id="missions-daily"></div>
+          <div class="mission-head"><span>Weekly</span><em id="missions-weekly-reset"></em></div>
+          <div class="mission-list" id="missions-weekly"></div>
+          <p class="note">Missions count only real runs. Daily missions reset at midnight, weekly missions on Sunday at midnight.</p>
+        </div>
+      </div>
+
+      <!-- ============================== shop -->
+      <div id="screen-shop" class="screen menu-screen solid hidden">
+        <div class="menu-wrap">
+          <div class="menu-head">
+            <span class="head-spacer"></span>
+            <h2>SHOP</h2>
+            <div class="pill big-pill diamond-pill" title="Diamonds">💎 <b class="diamond-val">0</b></div>
+          </div>
+          <div class="shop-shelves" id="shop-list"></div>
+          <p class="note" id="shop-note"></p>
+        </div>
+      </div>
+
+      <!-- ============================== bottom tab bar of the main menus (ui/Menus.ts) -->
+      <nav id="tabbar" class="tabbar hidden" aria-label="Menus">
+        <button class="tab" data-tab="shop"><span>🛒</span>Shop</button>
+        <button class="tab" data-tab="equipment"><span>🎒</span>Equipment<i class="dot hidden" id="dot-equipment"></i></button>
+        <button class="tab tab-home" data-tab="home"><span>🏠</span>Home</button>
+        <button class="tab" data-tab="talents"><span>⭐</span>Talents<i class="dot hidden" id="dot-talents"></i></button>
+        <button class="tab" data-tab="missions"><span>📋</span>Missions<i class="dot hidden" id="dot-missions"></i></button>
+      </nav>
+
+      <div id="item-modal" class="modal hidden"><div class="modal-card" id="item-card"></div></div>
+
+      <!-- ============================== in-run screens -->
+      <div id="screen-pause" class="screen hidden">
+        <div class="panel">
+          <h2>PAUSED</h2>
+          <button class="btn primary" id="btn-resume">RESUME</button>
+          <button class="btn" id="btn-restart">RESTART HOUSE</button>
+          <div class="btn-row">
+            <button class="btn small" id="btn-mute-pause">🔊 Sound on</button>
+            <button class="btn small" id="btn-settings-pause">⚙️ Settings</button>
+          </div>
+          <button class="btn small ghost" id="btn-quit">QUIT TO HOME · keep loot</button>
+        </div>
+      </div>
+
+      <div id="screen-settings" class="screen hidden">
+        <div class="panel settings-panel">
+          <h2>SETTINGS</h2>
+          <div class="set-group">
+            <div class="opt-label">Graphics</div>
+            <div class="seg" role="radiogroup" aria-label="Graphics quality">
+              <button class="chip" data-quality="auto">Auto</button>
+              <button class="chip" data-quality="low">Low</button>
+              <button class="chip" data-quality="medium">Medium</button>
+              <button class="chip" data-quality="high">High</button>
+              <button class="chip" data-quality="ultra">Ultra</button>
+            </div>
+            <p class="set-help" id="set-quality-help"></p>
+          </div>
+          <button class="switch" id="set-sound" role="switch"><span>🔊 Sound</span><span class="switch-state">ON</span></button>
+          <button class="switch" id="set-fps" role="switch"><span>📈 Show FPS counter</span><span class="switch-state">OFF</span></button>
+          <button class="switch" id="set-skin-armor" role="switch"><span>👕 Show skin over armor</span><span class="switch-state">ON</span></button>
+          <button class="btn primary" id="btn-settings-close">DONE</button>
+        </div>
+      </div>
+
+      <div id="screen-levelup" class="screen hidden">
+        <div class="levelup-wrap">
+          <h2 class="glow">LEVEL UP!</h2>
+          <p class="sub" id="levelup-sub">Choose an upgrade</p>
+          <div id="cards"></div>
+        </div>
+      </div>
+
+      <div id="screen-summary" class="screen hidden">
+        <div class="panel">
+          <h2 class="glow" id="summary-title">STAGE 1 CLEARED</h2>
+          <div class="stats" id="summary-stats"></div>
+          <div class="loot-box" id="summary-loot"></div>
+          <button class="btn primary" id="btn-next">NEXT STAGE →</button>
+        </div>
+      </div>
+
+      <div id="screen-gameover" class="screen hidden">
+        <div class="panel">
+          <h2 class="danger">YOU DIED</h2>
+          <div class="stats" id="gameover-stats"></div>
+          <div class="loot-box" id="gameover-loot"></div>
+          <p class="note">Your coins and any boss chests are kept.</p>
+          <button class="btn primary" id="btn-home">HOME</button>
+          <button class="btn small ghost" id="btn-retry">TRY AGAIN</button>
+        </div>
+      </div>
+
+      <div id="screen-complete" class="screen hidden">
+        <div class="panel">
+          <h2 class="gold-title">HOUSE COMPLETE!</h2>
+          <p class="sub-title" id="complete-house"></p>
+          <div class="stats" id="complete-stats"></div>
+
+          <div class="unlock hidden" id="complete-unlock"></div>
+          <div class="loot-box" id="complete-loot"></div>
+          <button class="btn primary" id="btn-complete-home">HOME</button>
+        </div>
+      </div>
+
+      <div id="fps" class="hidden"></div>
+
+      <div id="rotate" aria-live="polite">
+        <div class="rotate-icon">📱</div>
+        <div class="rotate-title">Turn your phone upright</div>
+        <div class="rotate-sub">Zombie Survivor is played in portrait mode.</div>
+      </div>
+    </div>
+  </body>
+</html>
