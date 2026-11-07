@@ -1,0 +1,19 @@
+{
+  "prs": {
+    "71": {
+      "headSha": "298ed0dc7fc70f1652a1ab768b9c92d0d087bf6e",
+      "mainSha": "50590bd2f6defe54d7b1e061048e9946a99da498",
+      "branch": "asaf/security-audit",
+      "title": "Security and safety audit report (docs only, do not merge yet)",
+      "pushedAt": "2026-10-31T23:53:08.026Z",
+      "status": "ok",
+      "builtAt": "2026-11-07T17:17:00.146Z"
+    }
+  },
+  "general": {
+    "key": "pr71:298ed0dc7fc70f1652a1ab768b9c92d0d087bf6e:50590bd2f6defe54d7b1e061048e9946a99da498",
+    "pr": 71,
+    "label": "PR #71 asaf/security-audit",
+    "at": "2026-11-07T17:17:00.146Z"
+  }
+}
