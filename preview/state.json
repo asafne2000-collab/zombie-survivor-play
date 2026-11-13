@@ -1,0 +1,37 @@
+{
+  "prs": {
+    "71": {
+      "headSha": "298ed0dc7fc70f1652a1ab768b9c92d0d087bf6e",
+      "mainSha": "8a3f40338c464f8cca982f0640747451145782ee",
+      "branch": "asaf/security-audit",
+      "title": "Security and safety audit report (docs only, do not merge yet)",
+      "pushedAt": "2026-10-31T23:53:08.026Z",
+      "status": "ok",
+      "builtAt": "2026-11-12T18:22:31.762Z"
+    },
+    "101": {
+      "headSha": "de9377b143b5697ba9d8328f517cdaed88a761dd",
+      "mainSha": "8a3f40338c464f8cca982f0640747451145782ee",
+      "branch": "asaf/mac-setup",
+      "title": "Mac setup: dev scripts work on Mac and Windows",
+      "pushedAt": "2026-11-11T23:17:19.856Z",
+      "status": "ok",
+      "builtAt": "2026-11-12T18:22:31.762Z"
+    },
+    "105": {
+      "headSha": "b6ac59a76963cb53cbcc107e68c7558df0d4b24e",
+      "mainSha": "8a3f40338c464f8cca982f0640747451145782ee",
+      "branch": "itay/version-1.0.2",
+      "title": "Android version 1.0.2 (code 3) with the privacy policy button",
+      "pushedAt": "2026-11-13T19:15:03.356Z",
+      "status": "ok",
+      "builtAt": "2026-11-13T19:15:03.356Z"
+    }
+  },
+  "general": {
+    "key": "pr105:b6ac59a76963cb53cbcc107e68c7558df0d4b24e:8a3f40338c464f8cca982f0640747451145782ee",
+    "pr": 105,
+    "label": "PR #105 itay/version-1.0.2",
+    "at": "2026-11-13T19:15:03.356Z"
+  }
+}
