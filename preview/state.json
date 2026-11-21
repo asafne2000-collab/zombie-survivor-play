@@ -1,0 +1,37 @@
+{
+  "prs": {
+    "71": {
+      "headSha": "298ed0dc7fc70f1652a1ab768b9c92d0d087bf6e",
+      "mainSha": "7eb86a1c26c85a995318048db56fa9ad6d47f569",
+      "branch": "asaf/security-audit",
+      "title": "Security and safety audit report (docs only, do not merge yet)",
+      "pushedAt": "2026-10-31T23:53:08.026Z",
+      "status": "ok",
+      "builtAt": "2026-11-20T21:19:25.754Z"
+    },
+    "101": {
+      "headSha": "de9377b143b5697ba9d8328f517cdaed88a761dd",
+      "mainSha": "7eb86a1c26c85a995318048db56fa9ad6d47f569",
+      "branch": "asaf/mac-setup",
+      "title": "Mac setup: dev scripts work on Mac and Windows",
+      "pushedAt": "2026-11-11T23:17:19.856Z",
+      "status": "ok",
+      "builtAt": "2026-11-20T21:19:25.754Z"
+    },
+    "110": {
+      "headSha": "f9a2496fe1e82731a784507c1d6a69cbb4c16af6",
+      "mainSha": "7eb86a1c26c85a995318048db56fa9ad6d47f569",
+      "branch": "itay/hell-bosses",
+      "title": "Hell bosses: a unique boss for each Hell map",
+      "pushedAt": "2026-11-20T23:03:58.981Z",
+      "status": "ok",
+      "builtAt": "2026-11-20T23:03:58.981Z"
+    }
+  },
+  "general": {
+    "key": "pr110:f9a2496fe1e82731a784507c1d6a69cbb4c16af6:7eb86a1c26c85a995318048db56fa9ad6d47f569",
+    "pr": 110,
+    "label": "PR #110 itay/hell-bosses",
+    "at": "2026-11-20T23:03:58.981Z"
+  }
+}
