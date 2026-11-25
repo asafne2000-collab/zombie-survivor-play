@@ -1,0 +1,39 @@
+{
+  "prs": {
+    "71": {
+      "headSha": "298ed0dc7fc70f1652a1ab768b9c92d0d087bf6e",
+      "mainSha": "4d324cbcea353e8e7ef0d6c14bec5626abdf9eb3",
+      "branch": "asaf/security-audit",
+      "title": "Security and safety audit report (docs only, do not merge yet)",
+      "pushedAt": "2026-10-31T23:53:08.026Z",
+      "status": "ok",
+      "builtAt": "2026-11-25T10:21:09.513Z"
+    },
+    "101": {
+      "headSha": "de9377b143b5697ba9d8328f517cdaed88a761dd",
+      "mainSha": "4d324cbcea353e8e7ef0d6c14bec5626abdf9eb3",
+      "branch": "asaf/mac-setup",
+      "title": "Mac setup: dev scripts work on Mac and Windows",
+      "pushedAt": "2026-11-11T23:17:19.856Z",
+      "status": "conflict",
+      "conflict": [
+        "scripts/app-art.mjs"
+      ]
+    },
+    "120": {
+      "headSha": "1580e182199ffc37bad32ecd49c94fcf8429a8f6",
+      "mainSha": "4d324cbcea353e8e7ef0d6c14bec5626abdf9eb3",
+      "branch": "itay/android-release",
+      "title": "Android version 1.0.3 (code 4): full app name under the icon",
+      "pushedAt": "2026-11-25T18:31:14.025Z",
+      "status": "ok",
+      "builtAt": "2026-11-25T18:31:14.025Z"
+    }
+  },
+  "general": {
+    "key": "pr120:1580e182199ffc37bad32ecd49c94fcf8429a8f6:4d324cbcea353e8e7ef0d6c14bec5626abdf9eb3",
+    "pr": 120,
+    "label": "PR #120 itay/android-release",
+    "at": "2026-11-25T18:31:14.025Z"
+  }
+}
